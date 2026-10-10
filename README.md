@@ -14,7 +14,7 @@ Each shadowbox looks for numbered JPGs in its own folder. Any slot without a pho
 | Shadowbox | Folder | Slots |
 |---|---|---|
 | Marvel's Wolverine | `images/wolverine/` | 1.jpg – 4.jpg |
-| Marvel's Spider-Man 2 | `images/spider-man-2/` | 1.jpg – 3.jpg |
+| Marvel's Spider-Man 2 | `images/spider-man-2/` | 1.jpg – 4.jpg |
 | Ratchet & Clank: Rift Apart | `images/rift-apart/` | 1.jpg – 3.jpg (2.jpg is a portrait slot) |
 | The Walking Dead: The Final Season | `images/the-walking-dead/` | 1.jpg – 3.jpg |
 | Batman: The Enemy Within | `images/batman/` | 1.jpg – 3.jpg |
@@ -28,8 +28,7 @@ Tips:
 Moving a photo or sticker: each one has `--x` / `--y` (position, % of the collage), `--w` (width, %) and `--r` (rotation) in its `style`.
 
 ## Before publishing
-1. Confirm her credited title on Marvel's Wolverine (currently "Writer").
-2. Confirm the Batman: The Enemy Within WGA nomination wording.
+1. Confirm the Batman: The Enemy Within WGA nomination wording.
 
 ## Deploy
 Upload everything to the root of the repo's `main` branch. GitHub Pages republishes within a minute or two.

@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lauren Mee — Narrative Writer</title>
-<meta name="description" content="Lauren Mee is a narrative writer and Senior Principal Writer at Insomniac Games. Credits include Marvel's Wolverine, Marvel's Spider-Man 2, Ratchet & Clank: Rift Apart, The Walking Dead: The Final Season and Batman: The Enemy Within.">
+<meta name="description" content="Lauren Mee is a narrative writer and Principal Writer at Insomniac Games. Credits include Marvel's Wolverine, Marvel's Spider-Man 2, Ratchet & Clank: Rift Apart, The Walking Dead: The Final Season and Batman: The Enemy Within.">
 <meta property="og:title" content="Lauren Mee — Narrative Writer">
-<meta property="og:description" content="Senior Principal Writer at Insomniac Games. Character-focused interactive storytelling.">
+<meta property="og:description" content="Principal Writer at Insomniac Games. Character-focused interactive storytelling.">
 <meta property="og:url" content="https://www.lauren-mee.com/">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Kalam:wght@400;700&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Kalam:wght@400;700&family=Spectral:ital,wght@0,400;0,500;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;1,6..12,400&display=swap">
 <style>
 /* Layout: a mahogany-panelled cabin wall in late sunset light, hung with walnut shadowboxes lined in dusky rose velvet. Each box: a paper label (title + role) pinned above a collage of polaroids, washi tape and stickers. Deliberately one dark look. */
 :root {
@@ -40,6 +40,7 @@
   --display: "Young Serif", Georgia, "Times New Roman", serif;
   --hand: "Kalam", "Segoe Print", "Bradley Hand", cursive;
   --body: "Spectral", Georgia, "Times New Roman", serif;
+  --sans: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
   color-scheme: dark;
 }
 
@@ -65,8 +66,8 @@ a:focus-visible { outline: 3px solid var(--blossom); outline-offset: 3px; border
 /* Header */
 header { display: grid; gap: 0.9rem; max-width: 40rem; }
 h1 { font-family: var(--display); font-weight: 400; font-size: clamp(2.8rem, 9vw, 4.75rem); line-height: 1; margin: 0; letter-spacing: -0.01em; color: var(--text); text-shadow: 0 2px 18px rgba(240, 146, 96, 0.25); }
-.role-line { font-family: var(--hand); font-size: 1.35rem; margin: 0; color: var(--blossom); }
-.bio { margin: 0; max-width: 36rem; color: var(--text); }
+.role-line { font-family: var(--sans); font-weight: 600; font-size: 1.2rem; letter-spacing: 0.01em; margin: 0; color: var(--blossom); }
+.bio { margin: 0; max-width: 36rem; color: var(--text); font-family: var(--sans); line-height: 1.7; }
 .bio em { color: #fbeee4; }
 
 /* The wall of boxes */
@@ -186,7 +187,7 @@ footer { color: var(--text-soft); font-size: 0.85rem; }
   <header>
     <h1>Lauren Mee</h1>
     <div class="branch" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#blossom"/></svg><svg viewBox="0 0 100 100"><use href="#blossom"/></svg><svg viewBox="0 0 100 100"><use href="#blossom"/></svg></div>
-    <p class="role-line">Senior Principal Writer at Insomniac Games</p>
+    <p class="role-line">Principal Writer at Insomniac Games</p>
     <p class="bio">I write interactive stories built around character. At Insomniac I wrote on <em>Marvel's Wolverine</em> and <em>Marvel's Spider-Man 2</em>, and was a lead writer on <em>Ratchet &amp; Clank: Rift Apart</em>. Before that, I wrote episodes of <em>The Walking Dead: The Final Season</em> and <em>Batman: The Enemy Within</em> at Telltale Games.</p>
   </header>
 
@@ -197,7 +198,7 @@ footer { color: var(--text-soft); font-size: 0.85rem; }
       <article class="backing">
         <div class="label" style="--tilt:1deg">
           <h2>Unannounced project</h2>
-          <p class="role">Senior Principal Writer</p>
+          <p class="role">Principal Writer</p>
           <p class="where">Insomniac Games · Now</p>
         </div>
         <div class="collage">
@@ -216,7 +217,7 @@ footer { color: var(--text-soft); font-size: 0.85rem; }
       <article class="backing">
         <div class="label" style="--tilt:-1.5deg">
           <h2>Marvel's Wolverine</h2>
-          <p class="role">Writer</p>
+          <p class="role">Principal Writer</p>
           <p class="where">Insomniac Games · 2026</p>
         </div>
         <div class="collage">
@@ -242,13 +243,14 @@ footer { color: var(--text-soft); font-size: 0.85rem; }
           <p class="where">Insomniac Games · 2023</p>
         </div>
         <div class="collage">
-          <figure class="photo" style="--x:6%;--y:4%;--w:40%;--r:3deg"><div class="shot"><img src="images/spider-man-2/1.jpg" alt="Marvel's Spider-Man 2" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
-          <figure class="photo" style="--x:48%;--y:10%;--w:44%;--r:-3deg"><div class="shot"><img src="images/spider-man-2/2.jpg" alt="Marvel's Spider-Man 2" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
-          <figure class="photo" style="--x:26%;--y:52%;--w:38%;--r:-1deg"><div class="shot"><img src="images/spider-man-2/3.jpg" alt="Marvel's Spider-Man 2" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
-          <span class="tape" style="--x:16%;--y:0%;--w:20%;--r:-6deg;--tape:var(--tape-a)"></span>
-          <svg class="sticker" style="--x:72%;--y:62%;--w:12%;--r:-10deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#heart"/></svg>
-          <svg class="sticker" style="--x:8%;--y:66%;--w:12%;--r:12deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#blossom"/></svg>
-          <svg class="sticker" style="--x:86%;--y:4%;--w:8%;--c:#4f7cac" viewBox="0 0 100 100" aria-hidden="true"><use href="#pin"/></svg>
+          <figure class="photo" style="--x:4%;--y:6%;--w:42%;--r:3deg"><div class="shot"><img src="images/spider-man-2/1.jpg" alt="Marvel's Spider-Man 2" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:50%;--y:2%;--w:42%;--r:-3deg"><div class="shot"><img src="images/spider-man-2/2.jpg" alt="Marvel's Spider-Man 2" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:8%;--y:50%;--w:38%;--r:-2deg"><div class="shot"><img src="images/spider-man-2/3.jpg" alt="Marvel's Spider-Man 2" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:52%;--y:48%;--w:40%;--r:3deg"><div class="shot"><img src="images/spider-man-2/4.jpg" alt="Marvel's Spider-Man 2" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <span class="tape" style="--x:14%;--y:0%;--w:20%;--r:-6deg;--tape:var(--tape-a)"></span>
+          <svg class="sticker" style="--x:85%;--y:38%;--w:12%;--r:-10deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#heart"/></svg>
+          <svg class="sticker" style="--x:1%;--y:84%;--w:11%;--r:12deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#blossom"/></svg>
+          <svg class="sticker" style="--x:45%;--y:44%;--w:8%;--c:#4f7cac" viewBox="0 0 100 100" aria-hidden="true"><use href="#pin"/></svg>
         </div>
       </article>
     </li>
