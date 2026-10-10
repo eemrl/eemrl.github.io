@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lauren Mee — Narrative Writer</title>
+<meta name="description" content="Lauren Mee is a narrative writer and Senior Principal Writer at Insomniac Games. Credits include Marvel's Wolverine, Marvel's Spider-Man 2, Ratchet & Clank: Rift Apart, The Walking Dead: The Final Season and Batman: The Enemy Within.">
+<meta property="og:title" content="Lauren Mee — Narrative Writer">
+<meta property="og:description" content="Senior Principal Writer at Insomniac Games. Character-focused interactive storytelling.">
+<meta property="og:url" content="https://lauren-mee.com/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap">
+<style>
+/* Layout: one narrow reading column. Name → bio → credits as a dated timeline → a dialogue-choice contact prompt (a nod to branching-dialogue games). */
+:root {
+  --paper: #f4f5f7;
+  --ink: #1a1d27;
+  --muted: #5b6072;
+  --rule: #d6d9e1;
+  --accent: #2b45c9;
+  --choice-bg: #1a1d27;
+  --choice-fg: #f4f5f7;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Literata", Georgia, "Times New Roman", serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #13151c; --ink: #e8eaf0; --muted: #9a9fb2; --rule: #2b2f3c;
+    --accent: #8ea0ff; --choice-bg: #e8eaf0; --choice-fg: #13151c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #13151c; --ink: #e8eaf0; --muted: #9a9fb2; --rule: #2b2f3c;
+  --accent: #8ea0ff; --choice-bg: #e8eaf0; --choice-fg: #13151c; color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--body); font-size: 1.0625rem; line-height: 1.65;
+  padding-inline: 20px;
+}
+.wrap { max-width: 44rem; margin: 0 auto; padding-block: 4.5rem 3rem; display: grid; gap: 4rem; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* Hero */
+header { display: grid; gap: 1.25rem; }
+h1 {
+  font-family: var(--display); font-weight: 800; letter-spacing: -0.035em;
+  font-size: clamp(3.25rem, 13vw, 6.5rem); line-height: 0.9; margin: 0;
+  text-wrap: balance;
+}
+.role { font-family: var(--display); font-weight: 600; font-size: 1.15rem; margin: 0; color: var(--ink); }
+.role span { color: var(--muted); font-weight: 400; }
+.bio { margin: 0; max-width: 36rem; }
+.bio em { font-style: italic; }
+
+h2 {
+  font-family: var(--display); font-weight: 600; font-size: 1rem; letter-spacing: 0.01em;
+  margin: 0 0 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule); color: var(--muted);
+}
+
+/* Credits timeline */
+.credits { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.25rem; }
+.credit { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.25rem; }
+.year { font-family: var(--display); font-variant-numeric: tabular-nums; color: var(--muted); font-size: 0.95rem; padding-top: 0.3rem; }
+.credit-body { min-width: 0; display: grid; gap: 0.35rem; }
+.title { font-family: var(--display); font-weight: 600; font-size: 1.5rem; line-height: 1.2; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.meta { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.meta strong { color: var(--ink); font-weight: 500; }
+.eps { list-style: none; margin: 0.35rem 0 0; padding: 0; display: grid; gap: 0.15rem; font-size: 0.95rem; }
+.eps li::before { content: ""; display: inline-block; width: 0.6rem; height: 1px; background: var(--muted); vertical-align: middle; margin-right: 0.6rem; }
+.note { margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--muted); font-style: italic; }
+.credit.current .title::after {
+  content: "Now"; font-family: var(--display); font-weight: 600; font-size: 0.7rem;
+  letter-spacing: 0.04em; vertical-align: middle; margin-left: 0.6rem;
+  padding: 0.15rem 0.5rem; border: 1px solid var(--accent); color: var(--accent); border-radius: 999px;
+}
+
+/* Contact as a dialogue choice */
+.prompt { margin: 0 0 1.25rem; font-style: italic; color: var(--muted); }
+.choices { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.6rem; }
+.choices a {
+  display: flex; align-items: baseline; gap: 0.75rem; text-decoration: none;
+  background: var(--choice-bg); color: var(--choice-fg);
+  font-family: var(--display); font-weight: 600; padding: 0.85rem 1rem; border-radius: 3px;
+  transition: transform 120ms ease;
+}
+.choices a:hover { transform: translateX(4px); }
+.choices kbd { font-family: var(--display); font-weight: 400; opacity: 0.6; font-size: 0.85rem; }
+
+footer { color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+
+@media (max-width: 480px) {
+  .wrap { padding-block: 3rem 2rem; gap: 3rem; }
+  .credit { grid-template-columns: 1fr; gap: 0.25rem; }
+  .year { padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .choices a { transition: none; } .choices a:hover { transform: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Lauren<br>Mee</h1>
+    <p class="role">Senior Principal Writer <span>at Insomniac Games</span></p>
+    <p class="bio">I write interactive stories built around character. At Insomniac I wrote on <em>Marvel's Wolverine</em> and <em>Marvel's Spider-Man 2</em>, and was a lead writer on <em>Ratchet &amp; Clank: Rift Apart</em>. Before that, I wrote episodes of <em>The Walking Dead: The Final Season</em> and <em>Batman: The Enemy Within</em> at Telltale Games. I'm currently working on an unannounced project.</p>
+  </header>
+
+  <section aria-labelledby="credits-h">
+    <h2 id="credits-h">Credits</h2>
+    <ol class="credits">
+
+      <li class="credit current">
+        <div class="year">Now</div>
+        <div class="credit-body">
+          <h3 class="title">Unannounced project</h3>
+          <p class="meta">Insomniac Games · <strong>Senior Principal Writer</strong></p>
+        </div>
+      </li>
+
+      <li class="credit">
+        <div class="year">2026</div>
+        <div class="credit-body">
+          <h3 class="title">Marvel's Wolverine</h3>
+          <p class="meta">Insomniac Games · <strong>Writer</strong></p>
+        </div>
+      </li>
+
+      <li class="credit">
+        <div class="year">2023</div>
+        <div class="credit-body">
+          <h3 class="title">Marvel's Spider-Man 2</h3>
+          <p class="meta">Insomniac Games · <strong>Advanced Senior Writer</strong></p>
+        </div>
+      </li>
+
+      <li class="credit">
+        <div class="year">2021</div>
+        <div class="credit-body">
+          <h3 class="title">Ratchet &amp; Clank: Rift Apart</h3>
+          <p class="meta">Insomniac Games · <strong>Lead Writer</strong></p>
+        </div>
+      </li>
+
+      <li class="credit">
+        <div class="year">2018</div>
+        <div class="credit-body">
+          <h3 class="title">The Walking Dead: The Final Season</h3>
+          <p class="meta">Telltale Games</p>
+          <ul class="eps">
+            <li><strong>Lead Writer</strong>, Episode 3: “Broken Toys”</li>
+            <li>Writer, Episode 1: “Done Running”</li>
+            <li>Writer, Episode 4: “Take Us Back”</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="credit">
+        <div class="year">2017</div>
+        <div class="credit-body">
+          <h3 class="title">Batman: The Enemy Within</h3>
+          <p class="meta">Telltale Games · <strong>Writer</strong></p>
+          <ul class="eps">
+            <li>Episode 3: “Fractured Mask”</li>
+            <li>Episode 4: “What Ails You”</li>
+            <li>Episode 5: “Same Stitch”</li>
+          </ul>
+          <p class="note">WGA Award nominee, Outstanding Achievement in Videogame Writing</p>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <section aria-labelledby="contact-h">
+    <h2 id="contact-h">Contact</h2>
+    <p class="prompt">What do you want to say to Lauren?</p>
+    <ul class="choices">
+      <li><a href="https://www.linkedin.com/in/lauren-mee/" rel="noopener"><kbd>1</kbd> Connect on LinkedIn</a></li>
+    </ul>
+  </section>
+
+  <footer>© 2026 Lauren Mee. Game titles and trademarks belong to their respective owners.</footer>
+
+</div>
+</body>
+</html>
