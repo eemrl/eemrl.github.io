@@ -11,179 +11,308 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Kalam:wght@400;700&family=Nunito:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
-/* Layout: one narrow reading column. Name → bio → credits as a dated timeline → a dialogue-choice contact prompt (a nod to branching-dialogue games). */
+/* Layout: a painted wall hung with oak shadowboxes, one per project. Inside each: a paper label (title + role) pinned above a collage of polaroids, washi tape and stickers. */
 :root {
-  --paper: #f4f5f7;
-  --ink: #1a1d27;
-  --muted: #5b6072;
-  --rule: #d6d9e1;
-  --accent: #2b45c9;
-  --choice-bg: #1a1d27;
-  --choice-fg: #f4f5f7;
-  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-  --body: "Literata", Georgia, "Times New Roman", serif;
+  --wall: #d9dfcf;          /* dusty sage paint */
+  --wall-stripe: #d2d9c7;
+  --text: #2f2b27;          /* text painted straight on the wall */
+  --text-soft: #5d5a50;
+  --oak: #a7764a;
+  --oak-dark: #77502f;
+  --backing: #e7dcc8;       /* linen inside the boxes */
+  --backing-shade: #cdbfa6;
+  --paper: #fcf9f3;         /* polaroids, labels: always light, they're objects */
+  --paper-ink: #2f2b27;
+  --pin: #c2473a;
+  --tape-a: #e9b8a6;
+  --tape-b: #b9cfd8;
+  --tape-c: #e8d690;
+  --link: #8a3a2f;
+  --display: "Young Serif", Georgia, "Times New Roman", serif;
+  --hand: "Kalam", "Segoe Print", "Bradley Hand", cursive;
+  --body: "Nunito", "Segoe UI", system-ui, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #13151c; --ink: #e8eaf0; --muted: #9a9fb2; --rule: #2b2f3c;
-    --accent: #8ea0ff; --choice-bg: #e8eaf0; --choice-fg: #13151c; color-scheme: dark;
+    --wall: #262b24; --wall-stripe: #2a3027; --text: #ece6da; --text-soft: #b5ae9f;
+    --oak: #7d5634; --oak-dark: #553820; --backing: #3b352d; --backing-shade: #2a251f;
+    --link: #f0a493; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #13151c; --ink: #e8eaf0; --muted: #9a9fb2; --rule: #2b2f3c;
-  --accent: #8ea0ff; --choice-bg: #e8eaf0; --choice-fg: #13151c; color-scheme: dark;
+  --wall: #262b24; --wall-stripe: #2a3027; --text: #ece6da; --text-soft: #b5ae9f;
+  --oak: #7d5634; --oak-dark: #553820; --backing: #3b352d; --backing-shade: #2a251f;
+  --link: #f0a493; color-scheme: dark;
 }
+
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
-  margin: 0; background: var(--paper); color: var(--ink);
-  font-family: var(--body); font-size: 1.0625rem; line-height: 1.65;
-  padding-inline: 20px;
+  margin: 0;
+  background-color: var(--wall);
+  background-image: repeating-linear-gradient(90deg, var(--wall) 0 46px, var(--wall-stripe) 46px 48px);
+  color: var(--text);
+  font-family: var(--body); font-size: 1.0625rem; line-height: 1.6;
+  padding-inline: 16px;
 }
-.wrap { max-width: 44rem; margin: 0 auto; padding-block: 4.5rem 3rem; display: grid; gap: 4rem; }
-a { color: var(--accent); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+a { color: var(--link); text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; border-radius: 3px; }
 
-/* Hero */
-header { display: grid; gap: 1.25rem; }
-h1 {
-  font-family: var(--display); font-weight: 800; letter-spacing: -0.035em;
-  font-size: clamp(3.25rem, 13vw, 6.5rem); line-height: 0.9; margin: 0;
-  text-wrap: balance;
-}
-.role { font-family: var(--display); font-weight: 600; font-size: 1.15rem; margin: 0; color: var(--ink); }
-.role span { color: var(--muted); font-weight: 400; }
+.page { max-width: 76rem; margin: 0 auto; padding-block: 4rem 3rem; display: grid; gap: 3.5rem; }
+
+/* Header */
+header { display: grid; gap: 0.9rem; max-width: 40rem; }
+h1 { font-family: var(--display); font-weight: 400; font-size: clamp(2.8rem, 9vw, 4.75rem); line-height: 1; margin: 0; letter-spacing: -0.01em; }
+.role-line { font-family: var(--hand); font-size: 1.35rem; margin: 0; color: var(--text-soft); }
 .bio { margin: 0; max-width: 36rem; }
-.bio em { font-style: italic; }
 
-h2 {
-  font-family: var(--display); font-weight: 600; font-size: 1rem; letter-spacing: 0.01em;
-  margin: 0 0 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule); color: var(--muted);
+/* The wall of boxes */
+.wall { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 30rem), 1fr)); gap: 3rem 2.5rem; }
+
+.box {
+  padding: 14px;
+  background:
+    repeating-linear-gradient(100deg, rgba(255,255,255,0.06) 0 3px, transparent 3px 9px),
+    linear-gradient(135deg, var(--oak), var(--oak-dark));
+  border-radius: 4px;
+  box-shadow: 0 18px 30px -12px rgba(0,0,0,0.38), 0 3px 6px rgba(0,0,0,0.18);
+}
+.backing {
+  position: relative;
+  background-color: var(--backing);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.025) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.025) 0 1px, transparent 1px 3px);
+  box-shadow: inset 0 10px 18px -6px rgba(0,0,0,0.45), inset 0 0 0 1px var(--backing-shade), inset 8px 0 14px -10px rgba(0,0,0,0.4), inset -8px 0 14px -10px rgba(0,0,0,0.4);
+  padding: 1.4rem 1.2rem 1.2rem;
+  display: grid; gap: 0.6rem;
 }
 
-/* Credits timeline */
-.credits { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.25rem; }
-.credit { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.25rem; }
-.year { font-family: var(--display); font-variant-numeric: tabular-nums; color: var(--muted); font-size: 0.95rem; padding-top: 0.3rem; }
-.credit-body { min-width: 0; display: grid; gap: 0.35rem; }
-.title { font-family: var(--display); font-weight: 600; font-size: 1.5rem; line-height: 1.2; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
-.meta { margin: 0; color: var(--muted); font-size: 0.95rem; }
-.meta strong { color: var(--ink); font-weight: 500; }
-.eps { list-style: none; margin: 0.35rem 0 0; padding: 0; display: grid; gap: 0.15rem; font-size: 0.95rem; }
-.eps li::before { content: ""; display: inline-block; width: 0.6rem; height: 1px; background: var(--muted); vertical-align: middle; margin-right: 0.6rem; }
-.note { margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--muted); font-style: italic; }
-.credit.current .title::after {
-  content: "Now"; font-family: var(--display); font-weight: 600; font-size: 0.7rem;
-  letter-spacing: 0.04em; vertical-align: middle; margin-left: 0.6rem;
-  padding: 0.15rem 0.5rem; border: 1px solid var(--accent); color: var(--accent); border-radius: 999px;
+/* Paper label pinned at the top */
+.label {
+  justify-self: center; position: relative; z-index: 5;
+  background: var(--paper); color: var(--paper-ink);
+  padding: 0.85rem 1.4rem 0.75rem; max-width: 92%;
+  text-align: center; transform: rotate(var(--tilt, -1deg));
+  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
 }
-
-/* Contact as a dialogue choice */
-.prompt { margin: 0 0 1.25rem; font-style: italic; color: var(--muted); }
-.choices { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.6rem; }
-.choices a {
-  display: flex; align-items: baseline; gap: 0.75rem; text-decoration: none;
-  background: var(--choice-bg); color: var(--choice-fg);
-  font-family: var(--display); font-weight: 600; padding: 0.85rem 1rem; border-radius: 3px;
-  transition: transform 120ms ease;
+.label::before { /* push pin */
+  content: ""; position: absolute; top: -7px; left: 50%; width: 15px; height: 15px; margin-left: -7px;
+  border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff8 0 2px, var(--pin) 3px);
+  box-shadow: 1px 3px 3px rgba(0,0,0,0.35);
 }
-.choices a:hover { transform: translateX(4px); }
-.choices kbd { font-family: var(--display); font-weight: 400; opacity: 0.6; font-size: 0.85rem; }
+.label h2 { font-family: var(--display); font-weight: 400; font-size: clamp(1.25rem, 3.2vw, 1.6rem); line-height: 1.15; margin: 0; text-wrap: balance; }
+.label .role { font-family: var(--hand); font-size: 1.15rem; margin: 0.2rem 0 0; line-height: 1.3; }
+.label .where { font-size: 0.85rem; margin: 0.1rem 0 0; color: #6b655b; font-variant-numeric: tabular-nums; }
+.label .eps { list-style: none; margin: 0.35rem 0 0; padding: 0; font-family: var(--hand); font-size: 1rem; line-height: 1.35; }
 
-footer { color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+/* Collage area: everything inside is placed with --x/--y/--w/--r (percent of the area) */
+.collage { position: relative; aspect-ratio: 4 / 3; }
+.collage > * { position: absolute; left: var(--x); top: var(--y); width: var(--w); transform: rotate(var(--r, 0deg)); }
 
-@media (max-width: 480px) {
-  .wrap { padding-block: 3rem 2rem; gap: 3rem; }
-  .credit { grid-template-columns: 1fr; gap: 0.25rem; }
-  .year { padding-top: 0; }
+.photo { margin: 0; background: var(--paper); padding: 5% 5% 14%; box-shadow: 0 6px 12px rgba(0,0,0,0.25); transition: transform 160ms ease, box-shadow 160ms ease; z-index: 1; }
+.photo:hover { transform: rotate(0deg) scale(1.04); box-shadow: 0 12px 22px rgba(0,0,0,0.3); z-index: 4; }
+.photo .shot { aspect-ratio: var(--ar, 4 / 3); background: #d8d2c6; overflow: hidden; position: relative; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo.empty img { display: none; }
+.photo.empty .shot { background: repeating-linear-gradient(45deg, #e4ded2 0 8px, #dcd5c8 8px 16px); }
+.photo.empty .shot::after { content: "photo"; position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--hand); color: #8e877a; font-size: 0.95rem; }
+.photo figcaption { position: absolute; left: 0; right: 0; bottom: 2%; text-align: center; font-family: var(--hand); color: var(--paper-ink); font-size: clamp(0.7rem, 1.6vw, 0.95rem); }
+
+/* Face-down polaroids for the secret project */
+.photo.back .shot { background: var(--paper); display: grid; place-items: center; border: 1px dashed #d6cfc2; }
+.photo.back .shot span { font-family: var(--hand); color: #8a8275; font-size: clamp(0.9rem, 2.4vw, 1.3rem); }
+
+.tape { height: 1.4rem; opacity: 0.85; z-index: 3; background: var(--tape, var(--tape-a)); background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.35) 0 4px, transparent 4px 8px); clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 1% 96%, 0 50%); }
+
+.note { z-index: 3; background: #f5e7a1; color: var(--paper-ink); padding: 0.6rem 0.7rem; font-family: var(--hand); font-size: clamp(0.85rem, 2vw, 1.05rem); line-height: 1.25; box-shadow: 0 5px 10px rgba(0,0,0,0.2); }
+
+.sticker { z-index: 3; height: auto; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); overflow: visible; }
+
+.rosette { z-index: 3; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center; background: radial-gradient(circle, #e9c46a 0 58%, #d5a942 59% 64%, #e9c46a 65%); color: #4a3510; font-family: var(--hand); font-weight: 700; font-size: clamp(0.62rem, 1.5vw, 0.82rem); line-height: 1.1; box-shadow: 0 0 0 4px #fff, 0 4px 8px rgba(0,0,0,0.3); padding: 8%; }
+
+/* Contact tag */
+.contact { display: grid; gap: 0.8rem; justify-items: start; }
+.contact h2 { font-family: var(--display); font-weight: 400; font-size: 1.6rem; margin: 0; }
+.tag {
+  display: inline-flex; align-items: center; gap: 0.7rem; background: var(--paper); color: var(--paper-ink);
+  font-family: var(--hand); font-size: 1.25rem; text-decoration: none; padding: 0.6rem 1.2rem 0.6rem 2.2rem;
+  clip-path: polygon(14% 0, 100% 0, 100% 100%, 14% 100%, 0 50%); position: relative;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); transform: rotate(-2deg); transition: transform 160ms ease;
 }
-@media (prefers-reduced-motion: reduce) { .choices a { transition: none; } .choices a:hover { transform: none; } }
+.tag::before { content: ""; position: absolute; left: 1.05rem; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: var(--wall); box-shadow: inset 0 0 0 2px var(--backing-shade); }
+.tag:hover { transform: rotate(0deg); }
+.tag:focus-visible { outline: 3px solid var(--link); outline-offset: 4px; }
+
+footer { color: var(--text-soft); font-size: 0.85rem; }
+
+@media (max-width: 520px) {
+  .page { padding-block: 2.75rem 2rem; gap: 2.5rem; }
+  .collage { aspect-ratio: 1 / 1; }
+  .backing { padding: 1.2rem 0.8rem 0.8rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo, .tag { transition: none; }
+  .photo:hover { transform: rotate(var(--r, 0deg)); }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
+
+<!-- Sticker shapes, used with <svg class="sticker"><use href="#name"/></svg> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="star" viewBox="0 0 100 100"><path d="M50 6 62 37 95 38 69 58 78 91 50 72 22 91 31 58 5 38 38 37Z" style="fill:#f2c94c;stroke:#fff;stroke-width:7;stroke-linejoin:round"/></symbol>
+  <symbol id="heart" viewBox="0 0 100 100"><path d="M50 88C20 66 6 50 6 32 6 18 17 8 30 8c9 0 16 5 20 12 4-7 11-12 20-12 13 0 24 10 24 24 0 18-14 34-44 56Z" style="fill:#e07a6b;stroke:#fff;stroke-width:7;stroke-linejoin:round"/></symbol>
+  <symbol id="leaf" viewBox="0 0 100 100"><path d="M50 4 58 22 70 16 66 40 84 30 80 44 96 48 78 60 82 70 56 66 54 94 46 94 44 66 18 70 22 60 4 48 20 44 16 30 34 40 30 16 42 22Z" style="fill:#c8553d;stroke:#fff;stroke-width:6;stroke-linejoin:round"/></symbol>
+  <symbol id="planet" viewBox="0 0 100 100"><ellipse cx="50" cy="52" rx="46" ry="14" transform="rotate(-18 50 52)" style="fill:none;stroke:#fff;stroke-width:14"/><circle cx="50" cy="50" r="27" style="fill:#7b6fd6;stroke:#fff;stroke-width:6"/><ellipse cx="50" cy="52" rx="46" ry="14" transform="rotate(-18 50 52)" style="fill:none;stroke:#e8a54b;stroke-width:6;stroke-dasharray:96 60;stroke-dashoffset:-20"/></symbol>
+  <symbol id="moon" viewBox="0 0 100 100"><path d="M64 8a42 42 0 1 0 28 64A34 34 0 0 1 64 8Z" style="fill:#f2df9b;stroke:#fff;stroke-width:7;stroke-linejoin:round"/></symbol>
+  <symbol id="pin" viewBox="0 0 100 100"><path d="M50 62 40 96" style="stroke:#9a9a9a;stroke-width:5;stroke-linecap:round"/><circle cx="50" cy="40" r="26" style="fill:var(--c,#4f7cac)"/><circle cx="41" cy="31" r="7" style="fill:#fff;opacity:.55"/></symbol>
+</svg>
+
+<div class="page">
 
   <header>
-    <h1>Lauren<br>Mee</h1>
-    <p class="role">Senior Principal Writer <span>at Insomniac Games</span></p>
-    <p class="bio">I write interactive stories built around character. At Insomniac I wrote on <em>Marvel's Wolverine</em> and <em>Marvel's Spider-Man 2</em>, and was a lead writer on <em>Ratchet &amp; Clank: Rift Apart</em>. Before that, I wrote episodes of <em>The Walking Dead: The Final Season</em> and <em>Batman: The Enemy Within</em> at Telltale Games. I'm currently working on an unannounced project.</p>
+    <h1>Lauren Mee</h1>
+    <p class="role-line">Senior Principal Writer at Insomniac Games</p>
+    <p class="bio">I write interactive stories built around character. At Insomniac I wrote on <em>Marvel's Wolverine</em> and <em>Marvel's Spider-Man 2</em>, and was a lead writer on <em>Ratchet &amp; Clank: Rift Apart</em>. Before that, I wrote episodes of <em>The Walking Dead: The Final Season</em> and <em>Batman: The Enemy Within</em> at Telltale Games.</p>
   </header>
 
-  <section aria-labelledby="credits-h">
-    <h2 id="credits-h">Credits</h2>
-    <ol class="credits">
+  <ul class="wall" aria-label="Projects">
 
-      <li class="credit current">
-        <div class="year">Now</div>
-        <div class="credit-body">
-          <h3 class="title">Unannounced project</h3>
-          <p class="meta">Insomniac Games · <strong>Senior Principal Writer</strong></p>
+    <!-- Unannounced project -->
+    <li class="box">
+      <article class="backing">
+        <div class="label" style="--tilt:1deg">
+          <h2>Unannounced project</h2>
+          <p class="role">Senior Principal Writer</p>
+          <p class="where">Insomniac Games · Now</p>
         </div>
-      </li>
-
-      <li class="credit">
-        <div class="year">2026</div>
-        <div class="credit-body">
-          <h3 class="title">Marvel's Wolverine</h3>
-          <p class="meta">Insomniac Games · <strong>Writer</strong></p>
+        <div class="collage">
+          <figure class="photo back" style="--x:6%;--y:8%;--w:34%;--r:-6deg"><div class="shot"><span>shh…</span></div></figure>
+          <figure class="photo back" style="--x:36%;--y:20%;--w:32%;--r:4deg"><div class="shot"><span>soon</span></div></figure>
+          <figure class="photo back" style="--x:62%;--y:4%;--w:32%;--r:-2deg"><div class="shot"><span>?</span></div></figure>
+          <p class="note" style="--x:52%;--y:62%;--w:40%;--r:3deg">Can't show you this one yet.</p>
+          <svg class="sticker" style="--x:14%;--y:66%;--w:13%;--r:-12deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#moon"/></svg>
+          <svg class="sticker" style="--x:32%;--y:72%;--w:9%;--r:10deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#star"/></svg>
         </div>
-      </li>
+      </article>
+    </li>
 
-      <li class="credit">
-        <div class="year">2023</div>
-        <div class="credit-body">
-          <h3 class="title">Marvel's Spider-Man 2</h3>
-          <p class="meta">Insomniac Games · <strong>Advanced Senior Writer</strong></p>
+    <!-- Marvel's Wolverine -->
+    <li class="box">
+      <article class="backing">
+        <div class="label" style="--tilt:-1.5deg">
+          <h2>Marvel's Wolverine</h2>
+          <p class="role">Writer</p>
+          <p class="where">Insomniac Games · 2026</p>
         </div>
-      </li>
-
-      <li class="credit">
-        <div class="year">2021</div>
-        <div class="credit-body">
-          <h3 class="title">Ratchet &amp; Clank: Rift Apart</h3>
-          <p class="meta">Insomniac Games · <strong>Lead Writer</strong></p>
+        <div class="collage">
+          <figure class="photo" style="--x:4%;--y:6%;--w:44%;--r:-4deg"><div class="shot"><img src="images/wolverine/1.jpg" alt="Marvel's Wolverine" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:50%;--y:2%;--w:40%;--r:3deg"><div class="shot"><img src="images/wolverine/2.jpg" alt="Marvel's Wolverine" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:12%;--y:50%;--w:36%;--r:2deg"><div class="shot"><img src="images/wolverine/3.jpg" alt="Marvel's Wolverine" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:54%;--y:48%;--w:38%;--r:-3deg"><div class="shot"><img src="images/wolverine/4.jpg" alt="Marvel's Wolverine" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <span class="tape" style="--x:60%;--y:0%;--w:18%;--r:8deg;--tape:var(--tape-c)"></span>
+          <span class="tape" style="--x:2%;--y:46%;--w:16%;--r:-30deg;--tape:var(--tape-b)"></span>
+          <svg class="sticker" style="--x:84%;--y:40%;--w:13%;--r:14deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#leaf"/></svg>
+          <svg class="sticker" style="--x:46%;--y:44%;--w:8%;--r:0deg;--c:#c2473a" viewBox="0 0 100 100" aria-hidden="true"><use href="#pin"/></svg>
         </div>
-      </li>
+      </article>
+    </li>
 
-      <li class="credit">
-        <div class="year">2018</div>
-        <div class="credit-body">
-          <h3 class="title">The Walking Dead: The Final Season</h3>
-          <p class="meta">Telltale Games</p>
+    <!-- Marvel's Spider-Man 2 -->
+    <li class="box">
+      <article class="backing">
+        <div class="label" style="--tilt:1.2deg">
+          <h2>Marvel's Spider-Man 2</h2>
+          <p class="role">Advanced Senior Writer</p>
+          <p class="where">Insomniac Games · 2023</p>
+        </div>
+        <div class="collage">
+          <figure class="photo" style="--x:6%;--y:4%;--w:40%;--r:3deg"><div class="shot"><img src="images/spider-man-2/1.jpg" alt="Marvel's Spider-Man 2" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:48%;--y:10%;--w:44%;--r:-3deg"><div class="shot"><img src="images/spider-man-2/2.jpg" alt="Marvel's Spider-Man 2" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:26%;--y:52%;--w:38%;--r:-1deg"><div class="shot"><img src="images/spider-man-2/3.jpg" alt="Marvel's Spider-Man 2" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <span class="tape" style="--x:16%;--y:0%;--w:20%;--r:-6deg;--tape:var(--tape-a)"></span>
+          <svg class="sticker" style="--x:72%;--y:62%;--w:12%;--r:-10deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#heart"/></svg>
+          <svg class="sticker" style="--x:8%;--y:66%;--w:10%;--r:12deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#star"/></svg>
+          <svg class="sticker" style="--x:86%;--y:4%;--w:8%;--c:#4f7cac" viewBox="0 0 100 100" aria-hidden="true"><use href="#pin"/></svg>
+        </div>
+      </article>
+    </li>
+
+    <!-- Ratchet & Clank: Rift Apart -->
+    <li class="box">
+      <article class="backing">
+        <div class="label" style="--tilt:-0.8deg">
+          <h2>Ratchet &amp; Clank: Rift Apart</h2>
+          <p class="role">Lead Writer</p>
+          <p class="where">Insomniac Games · 2021</p>
+        </div>
+        <div class="collage">
+          <figure class="photo" style="--x:4%;--y:10%;--w:42%;--r:-5deg"><div class="shot"><img src="images/rift-apart/1.jpg" alt="Ratchet &amp; Clank: Rift Apart" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:50%;--y:4%;--w:34%;--r:4deg;--ar:4/5"><div class="shot"><img src="images/rift-apart/2.jpg" alt="Ratchet &amp; Clank: Rift Apart" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:18%;--y:54%;--w:38%;--r:2deg"><div class="shot"><img src="images/rift-apart/3.jpg" alt="Ratchet &amp; Clank: Rift Apart" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <span class="tape" style="--x:56%;--y:0%;--w:18%;--r:-10deg;--tape:var(--tape-b)"></span>
+          <svg class="sticker" style="--x:70%;--y:62%;--w:17%;--r:-8deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#planet"/></svg>
+          <svg class="sticker" style="--x:88%;--y:52%;--w:8%;--r:20deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#star"/></svg>
+          <svg class="sticker" style="--x:6%;--y:60%;--w:7%;--r:-15deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#star"/></svg>
+        </div>
+      </article>
+    </li>
+
+    <!-- The Walking Dead: The Final Season -->
+    <li class="box">
+      <article class="backing">
+        <div class="label" style="--tilt:1.6deg">
+          <h2>The Walking Dead: The Final Season</h2>
+          <p class="where">Telltale Games · 2018</p>
           <ul class="eps">
-            <li><strong>Lead Writer</strong>, Episode 3: “Broken Toys”</li>
-            <li>Writer, Episode 1: “Done Running”</li>
-            <li>Writer, Episode 4: “Take Us Back”</li>
+            <li><strong>Lead Writer</strong> — Ep. 3 “Broken Toys”</li>
+            <li>Writer — Ep. 1 “Done Running”</li>
+            <li>Writer — Ep. 4 “Take Us Back”</li>
           </ul>
         </div>
-      </li>
-
-      <li class="credit">
-        <div class="year">2017</div>
-        <div class="credit-body">
-          <h3 class="title">Batman: The Enemy Within</h3>
-          <p class="meta">Telltale Games · <strong>Writer</strong></p>
-          <ul class="eps">
-            <li>Episode 3: “Fractured Mask”</li>
-            <li>Episode 4: “What Ails You”</li>
-            <li>Episode 5: “Same Stitch”</li>
-          </ul>
-          <p class="note">WGA Award nominee, Outstanding Achievement in Videogame Writing</p>
+        <div class="collage">
+          <figure class="photo" style="--x:4%;--y:6%;--w:40%;--r:2deg"><div class="shot"><img src="images/the-walking-dead/1.jpg" alt="The Walking Dead: The Final Season" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:46%;--y:2%;--w:42%;--r:-4deg"><div class="shot"><img src="images/the-walking-dead/2.jpg" alt="The Walking Dead: The Final Season" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:30%;--y:50%;--w:40%;--r:3deg"><div class="shot"><img src="images/the-walking-dead/3.jpg" alt="The Walking Dead: The Final Season" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <span class="tape" style="--x:70%;--y:48%;--w:18%;--r:24deg;--tape:var(--tape-c)"></span>
+          <svg class="sticker" style="--x:8%;--y:62%;--w:12%;--r:-12deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#heart"/></svg>
+          <svg class="sticker" style="--x:40%;--y:0%;--w:8%;--c:#5f8f5a" viewBox="0 0 100 100" aria-hidden="true"><use href="#pin"/></svg>
         </div>
-      </li>
+      </article>
+    </li>
 
-    </ol>
-  </section>
+    <!-- Batman: The Enemy Within -->
+    <li class="box">
+      <article class="backing">
+        <div class="label" style="--tilt:-1.2deg">
+          <h2>Batman: The Enemy Within</h2>
+          <p class="where">Telltale Games · 2017</p>
+          <ul class="eps">
+            <li>Writer — Ep. 3 “Fractured Mask”</li>
+            <li>Writer — Ep. 4 “What Ails You”</li>
+            <li>Writer — Ep. 5 “Same Stitch”</li>
+          </ul>
+        </div>
+        <div class="collage">
+          <figure class="photo" style="--x:6%;--y:4%;--w:42%;--r:-3deg"><div class="shot"><img src="images/batman/1.jpg" alt="Batman: The Enemy Within" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:50%;--y:8%;--w:40%;--r:4deg"><div class="shot"><img src="images/batman/2.jpg" alt="Batman: The Enemy Within" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:14%;--y:52%;--w:38%;--r:2deg"><div class="shot"><img src="images/batman/3.jpg" alt="Batman: The Enemy Within" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <span class="tape" style="--x:4%;--y:0%;--w:18%;--r:-12deg;--tape:var(--tape-a)"></span>
+          <div class="rosette" style="--x:64%;--y:56%;--w:22%;--r:-8deg">WGA Award nominee</div>
+          <svg class="sticker" style="--x:88%;--y:48%;--w:9%;--r:10deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#moon"/></svg>
+        </div>
+      </article>
+    </li>
 
-  <section aria-labelledby="contact-h">
-    <h2 id="contact-h">Contact</h2>
-    <p class="prompt">What do you want to say to Lauren?</p>
-    <ul class="choices">
-      <li><a href="https://www.linkedin.com/in/lauren-mee/" rel="noopener"><kbd>1</kbd> Connect on LinkedIn</a></li>
-    </ul>
+  </ul>
+
+  <section class="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Say hello</h2>
+    <a class="tag" href="https://www.linkedin.com/in/lauren-mee/" rel="noopener">Find me on LinkedIn</a>
   </section>
 
   <footer>© 2026 Lauren Mee. Game titles and trademarks belong to their respective owners.</footer>
