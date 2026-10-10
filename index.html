@@ -135,7 +135,7 @@ h1 { font-family: var(--display); font-weight: 400; font-size: clamp(2.8rem, 9vw
 
 .sticker { z-index: 3; height: auto; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45)); overflow: visible; }
 
-.rosette { z-index: 3; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center; background: radial-gradient(circle, #e7bf6a 0 58%, #c99a43 59% 64%, #e7bf6a 65%); color: #4a3010; font-family: var(--hand); font-weight: 700; font-size: clamp(0.62rem, 1.5vw, 0.82rem); line-height: 1.1; box-shadow: 0 0 0 4px var(--paper), 0 5px 10px rgba(0, 0, 0, 0.45); padding: 8%; }
+.rosette { z-index: 3; aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; background: radial-gradient(circle, #e7bf6a 0 58%, #c99a43 59% 64%, #e7bf6a 65%); color: #4a3010; font-family: var(--hand); font-weight: 700; font-size: clamp(0.62rem, 1.5vw, 0.82rem); line-height: 1.1; box-shadow: 0 0 0 4px var(--paper), 0 5px 10px rgba(0, 0, 0, 0.45); padding: calc(var(--w) * 0.14); }
 
 /* Header blossoms */
 .branch { display: flex; gap: 0.5rem; margin-top: 0.25rem; }
@@ -180,6 +180,8 @@ footer { color: var(--text-soft); font-size: 0.85rem; }
   <symbol id="moon" viewBox="0 0 100 100"><path d="M64 8a42 42 0 1 0 28 64A34 34 0 0 1 64 8Z" style="fill:#f2df9b;stroke:#fff;stroke-width:7;stroke-linejoin:round"/></symbol>
   <symbol id="blossom" viewBox="0 0 100 100"><g style="fill:#f2b8c6;stroke:#fff;stroke-width:5;stroke-linejoin:round"><path d="M50 50C38 38 36 18 50 8c14 10 12 30 0 42Z"/><path d="M50 50C38 38 36 18 50 8c14 10 12 30 0 42Z" transform="rotate(72 50 50)"/><path d="M50 50C38 38 36 18 50 8c14 10 12 30 0 42Z" transform="rotate(144 50 50)"/><path d="M50 50C38 38 36 18 50 8c14 10 12 30 0 42Z" transform="rotate(216 50 50)"/><path d="M50 50C38 38 36 18 50 8c14 10 12 30 0 42Z" transform="rotate(288 50 50)"/></g><circle cx="50" cy="50" r="8" style="fill:#d9677a"/></symbol>
   <symbol id="tumbler" viewBox="0 0 100 100"><path d="M16 18h68l-7 70c-.5 4-3.5 6-7.5 6h-39c-4 0-7-2-7.5-6Z" style="fill:#fff"/><path d="M22 24h56l-6 62c-.3 2.5-2 3.5-4.5 3.5h-35c-2.5 0-4.2-1-4.5-3.5Z" style="fill:#f3ece4"/><path d="M25 52h50l-3.4 33.5c-.3 2.3-1.8 3.3-4 3.3H32.4c-2.2 0-3.7-1-4-3.3Z" style="fill:#d98a2b"/><path d="M25 52h50l-.6 6H25.6Z" style="fill:#f0b25a"/><rect x="38" y="44" width="20" height="18" rx="3" transform="rotate(-12 48 53)" style="fill:#fff;opacity:.75"/><path d="M30 28l3 50" style="stroke:#fff;stroke-width:4;stroke-linecap:round;opacity:.8"/></symbol>
+  <symbol id="bat" viewBox="0 0 100 100"><path d="M50 40 54 28 57 38 C64 32 76 28 92 32 84 38 82 46 86 58 78 52 70 54 64 60 60 54 54 54 50 66 46 54 40 54 36 60 30 54 22 52 14 58 18 46 16 38 8 32 C24 28 36 32 43 38 46 28Z" style="fill:#2b2230;stroke:#fff;stroke-width:6;stroke-linejoin:round"/><circle cx="47.5" cy="41" r="1.6" style="fill:#f2c94c"/><circle cx="52.5" cy="41" r="1.6" style="fill:#f2c94c"/></symbol>
+  <symbol id="cap" viewBox="0 0 100 100"><path d="M14 64C14 38 28 24 48 24S80 38 80 62Z" style="fill:#b48a5e;stroke:#fff;stroke-width:6;stroke-linejoin:round"/><path d="M60 60H92C95 66 90 72 82 72H58Z" style="fill:#8c6642;stroke:#fff;stroke-width:6;stroke-linejoin:round"/><path d="M48 25C42 36 40 50 41 62M48 25C56 36 60 48 61 60" style="fill:none;stroke:#8c6642;stroke-width:2.5"/><circle cx="48" cy="24" r="4" style="fill:#8c6642;stroke:#fff;stroke-width:2"/></symbol>
   <symbol id="pin" viewBox="0 0 100 100"><path d="M50 62 40 96" style="stroke:#9a9a9a;stroke-width:5;stroke-linecap:round"/><circle cx="50" cy="40" r="26" style="fill:var(--c,#4f7cac)"/><circle cx="41" cy="31" r="7" style="fill:#fff;opacity:.55"/></symbol>
 </svg>
 
@@ -293,6 +295,7 @@ footer { color: var(--text-soft); font-size: 0.85rem; }
           <figure class="photo" style="--x:46%;--y:2%;--w:42%;--r:-4deg"><div class="shot"><img src="images/the-walking-dead/2.jpg" alt="The Walking Dead: The Final Season: Clementine holding a torch behind a boy in a cave" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
           <figure class="photo" style="--x:24%;--y:52%;--w:50%;--r:2deg;--ar:16/9"><div class="shot"><img src="images/the-walking-dead/3.jpg" alt="The Walking Dead: The Final Season: Clementine and companions walking through a dark forest with a dog" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
           <span class="tape" style="--x:70%;--y:48%;--w:18%;--r:24deg;--tape:var(--tape-c)"></span>
+          <svg class="sticker" style="--x:78%;--y:68%;--w:15%;--r:-10deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#cap"/></svg>
           <svg class="sticker" style="--x:8%;--y:62%;--w:12%;--r:-12deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#heart"/></svg>
           <svg class="sticker" style="--x:40%;--y:0%;--w:8%;--c:#5f8f5a" viewBox="0 0 100 100" aria-hidden="true"><use href="#pin"/></svg>
         </div>
@@ -312,12 +315,13 @@ footer { color: var(--text-soft); font-size: 0.85rem; }
           </ul>
         </div>
         <div class="collage">
-          <figure class="photo" style="--x:6%;--y:4%;--w:42%;--r:-3deg"><div class="shot"><img src="images/batman/1.jpg" alt="Batman: The Enemy Within" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
-          <figure class="photo" style="--x:50%;--y:8%;--w:40%;--r:4deg"><div class="shot"><img src="images/batman/2.jpg" alt="Batman: The Enemy Within" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
-          <figure class="photo" style="--x:14%;--y:52%;--w:38%;--r:2deg"><div class="shot"><img src="images/batman/3.jpg" alt="Batman: The Enemy Within" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:2%;--y:6%;--w:50%;--r:-3deg;--ar:16/9"><div class="shot"><img src="images/batman/1.jpg" alt="Batman: The Enemy Within: Bruce Wayne undercover in front of a line of villains" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:56%;--y:2%;--w:38%;--r:4deg"><div class="shot"><img src="images/batman/2.jpg" alt="Batman: The Enemy Within: John Doe grinning in a funeral parlor" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
+          <figure class="photo" style="--x:8%;--y:50%;--w:52%;--r:2deg;--ar:16/9"><div class="shot"><img src="images/batman/3.jpg" alt="Batman: The Enemy Within: the Joker holding a revolver to Batman's chin" loading="lazy" onerror="this.closest('.photo').classList.add('empty')"></div></figure>
           <span class="tape" style="--x:4%;--y:0%;--w:18%;--r:-12deg;--tape:var(--tape-a)"></span>
-          <div class="rosette" style="--x:64%;--y:56%;--w:22%;--r:-8deg">WGA Award nominee</div>
-          <svg class="sticker" style="--x:88%;--y:48%;--w:9%;--r:10deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#moon"/></svg>
+          <div class="rosette" style="--x:68%;--y:57%;--w:23%;--r:-8deg">WGA Award<br>nominee</div>
+          <svg class="sticker" style="--x:88%;--y:44%;--w:9%;--r:10deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#moon"/></svg>
+          <svg class="sticker" style="--x:52%;--y:38%;--w:14%;--r:-10deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#bat"/></svg>
           <svg class="sticker" style="--x:2%;--y:86%;--w:9%;--r:15deg" viewBox="0 0 100 100" aria-hidden="true"><use href="#blossom"/></svg>
         </div>
       </article>
