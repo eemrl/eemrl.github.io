@@ -5,7 +5,7 @@ Static portfolio site for Lauren Mee, hosted on GitHub Pages at lauren-mee.com. 
 ## Files
 - `index.html` — the whole site: one shadowbox per project
 - `images/` — the photos for each shadowbox (see below)
-- `CNAME` — tells GitHub Pages to serve at lauren-mee.com
+- `CNAME` — tells GitHub Pages to serve at www.lauren-mee.com (lauren-mee.com redirects there)
 - `.nojekyll` — skips Jekyll processing
 
 ## Adding photos
